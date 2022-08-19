@@ -38,7 +38,7 @@ document.getElementById('calculator').addEventListener('click', function (event)
         typedNumberField.value += number;
     }
 })
-
+let count = 2;
 document.getElementById('verify-pin').addEventListener('click', function () {
     const displayPinField = document.getElementById('pin-display');
     const currentPin = displayPinField.value;
@@ -50,8 +50,25 @@ document.getElementById('verify-pin').addEventListener('click', function () {
     if (typedNumber === currentPin) {
         pinSuccess.style.display = 'block';
         pinFailed.style.display = 'none';
+        const pinDisplay = document.getElementById('pin-display');
+        pinDisplay.value = '';
+        const typedNumberField = document.getElementById('typed-number');
+        typedNumberField.value = '';
+
     } else {
         
+        const tryCount = document.getElementById('try')
+        
+        if (count >= 0) {
+            tryCount.innerText = count;
+            console.log(count);
+            count--;
+        } else {
+            const pinDisplay = document.getElementById('pin-display');
+            pinDisplay.value = '';
+            const typedNumberField = document.getElementById('typed-number');
+            typedNumberField.value = '';
+        }
         pinSuccess.style.display = 'none';
         pinFailed.style.display = 'block';
     }
